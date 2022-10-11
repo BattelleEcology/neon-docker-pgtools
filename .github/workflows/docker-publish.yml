@@ -78,7 +78,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.7.1
         with:
-          image-ref: "ghcr.io/BattelleEcology/neon-docker-pgtools:${{ steps.tags.outputs.version }}"
+          image-ref: "ghcr.io/BattelleEcology/neon-docker-pgtools:${{ github.sha }}"
           format: "template"
           template: "@/contrib/sarif.tpl"
           output: "trivy-results.sarif"
