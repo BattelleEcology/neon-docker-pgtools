@@ -79,8 +79,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.7.1
         with:
           image-ref: "ghcr.io/BattelleEcology/neon-docker-pgtools:${{ github.sha }}"
-          format: "template"
-          template: "@/contrib/sarif.tpl"
+          format: "sarif"
           output: "trivy-results.sarif"
         if: github.event_name == 'push'
 
