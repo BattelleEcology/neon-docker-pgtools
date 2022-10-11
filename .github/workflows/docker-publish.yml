@@ -74,11 +74,14 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Set short sha outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
       # Scan with trivy and import sarif
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.7.1
         with:
-          image-ref: "ghcr.io/BattelleEcology/neon-docker-pgtools:${{ github.sha }}"
+          image-ref: "ghcr.io/BattelleEcology/neon-docker-pgtools:${{ steps.vars.outputs.sha_short }}"
           format: "sarif"
           output: "trivy-results.sarif"
         if: github.event_name == 'push'
