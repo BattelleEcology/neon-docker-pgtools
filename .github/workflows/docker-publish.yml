@@ -78,8 +78,8 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.7.1
         with:
-          image-ref: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}"
-          # image-ref: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ fromJSON(steps.meta.outputs.json).tags[0] }}"
+          # image-ref: "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}"
+          image-ref: "${{ env.REGISTRY }}/battelleecology/neon-docker-pgtools:${{ fromJSON(steps.meta.outputs.json).tags[0] }}"
           format: "sarif"
           output: "trivy-results.sarif"
         if: github.event_name == 'push'
