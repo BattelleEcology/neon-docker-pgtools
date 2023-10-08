@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 
 RUN pip install --no-cache-dir -r requirements.txt && \
-    apt update && apt install -y postgresql-client-13 && \
+    apt update && apt install -y postgresql-client-15 && \
     rm -rf /var/lib/apt/lists/*
 
 # Don't run as root
